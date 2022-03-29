@@ -3,7 +3,7 @@ class Api::V1::UsersController < ApplicationController
   before_action :check_owner, except: %i[create invite]
 
   # POST /api/v1/users
-  # create user
+  # create user asd
   def create
     @company = Company.find_or_create_by(name: user_params[:company_name])
     @user = @company.users.new(user_params.except(:company_name))
