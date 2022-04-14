@@ -1,9 +1,9 @@
-class Api::V1::UsersController < ApplicationController
+class Api::V2::UsersController < ApplicationController
   before_action :set_user, only: %i[show update github_auth destroy_all_records]
   before_action :check_owner, except: %i[create invite]
 
   # POST /api/v1/users
-  # create user asd
+  # create user
   def create
     @company = Company.find_or_create_by(name: user_params[:company_name])
     @user = @company.users.new(user_params.except(:company_name))

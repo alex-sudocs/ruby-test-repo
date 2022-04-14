@@ -7,7 +7,7 @@ class Api::V1::RepositoriesController < ApplicationController
     render json: RepositorySerializer.new(current_user.repositories)
                                      .serializable_hash
                                      .to_json,
-           status: :ok
+           status: 200
   end
 
   # GET /api/v1/repositories/:id
@@ -15,7 +15,6 @@ class Api::V1::RepositoriesController < ApplicationController
     # TODO: add check_login later, (collaborator for current repo)
     render json: RepositorySerializer.new(@repository, include: %i[folders user_repositories]).serializable_hash.to_json,
            status: :ok
-    # with files and code units included:
     # render json: RepositorySerializer.new(@repository, include: %i[folders folders.repo_files folders.repo_files.code_units folders.repo_files.code_units.code_unit_doc ]).serializable_hash.to_json,
   end
 
